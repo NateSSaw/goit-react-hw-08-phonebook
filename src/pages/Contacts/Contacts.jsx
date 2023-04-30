@@ -1,4 +1,4 @@
-import css from 'components/Contacts/Contacts.module.css';
+import css from 'pages/Contacts/Contacts.module.css';
 import { useSelector } from 'react-redux';
 import {
   useDeleteContactMutation,
