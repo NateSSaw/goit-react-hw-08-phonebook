@@ -1,0 +1,11 @@
+.filter__container {
+   text-align: right;
+}
+
+.label {
+    font-size: 16px;
+}
+
+.input {
+    margin-left: 10px;
+}
