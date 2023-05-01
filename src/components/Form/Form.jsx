@@ -2,7 +2,7 @@ import { useState } from 'react';
 import {
   useAddContactMutation,
   useGetContactsQuery,
-} from '../redux/contacts/contactsSlice';
+} from '../../redux/contacts/contactsSlice';
 import css from 'components/Form/Form.module.css';
 
 export default function Form() {
