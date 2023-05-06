@@ -2,7 +2,7 @@ import {
   addContactThunk,
   deleteContactThunk,
   getContactsThunk,
-} from '../components/redux/contacts/thunk';
+} from '../redux/contacts/operations';
 
 const thunksArr = [addContactThunk, deleteContactThunk, getContactsThunk];
 
@@ -20,7 +20,7 @@ export const handleFulfilledGet = (state, { payload }) => {
 };
 
 export const handleFulfilledAdd = (state, { payload }) => {
-  state.contacts.push(payload);
+  [...state.contacts].push(payload);
 };
 
 export const handleFulfilledDel = (state, { payload }) => {

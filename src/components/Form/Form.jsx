@@ -1,54 +1,28 @@
-import { useState } from 'react';
-import {
-  useAddContactMutation,
-  useGetContactsQuery,
-} from '../../redux/contacts/contactsSlice';
 import css from 'components/Form/Form.module.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { addContactThunk } from 'redux/contacts/operations';
+import { getContactsState, getFilterState } from 'redux/contacts/selectors';
 
 export default function Form() {
-  const [addContact] = useAddContactMutation();
-  const { data: contacts } = useGetContactsQuery();
-  // const { data, error, isLoading } = useGetContactsQuery();
-  const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
-
-  const onChange = ({ target }) => {
-    switch (target.name) {
-      case 'name':
-        setName(target.value);
-        break;
-      case 'number':
-        setPhone(target.value);
-        break;
-      default:
-        break;
-    }
-  };
-
-  const resetForm = () => {
-    setName('');
-    setPhone('');
-  };
-
+  const dispatch = useDispatch();
+  const contacts = useSelector(getContactsState);
+  const filter = useSelector(getFilterState);
   const onSubmit = e => {
     e.preventDefault();
+    const form = e.currentTarget;
+    const name = form.elements.name.value;
+    const number = form.elements.number.value;
+    const contact = { name: name, number: number };
+    const dublicateContact = contacts.find(item => item.name === name);
+    if (dublicateContact) {
+      return alert(`${name} is already in contacts`);
+    } else {
+      dispatch(addContactThunk(contact));
 
-    if (contacts?.find(contact => contact.name === name)) {
-      alert(`${name} is already in contacts.`);
-      return;
-    } else if (contacts?.find(contact => contact.name === '')) {
-      alert('Enter name');
-      return;
+      form.reset();
     }
-    handleAddContact({ name, phone });
-    resetForm();
   };
 
-  const handleAddContact = async contact => {
-    try {
-      await addContact(contact);
-    } catch (error) {}
-  };
   return (
     <form onSubmit={onSubmit}>
       <label className={css.label}>
@@ -61,8 +35,6 @@ export default function Form() {
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
-          value={name}
-          onChange={onChange}
         />
       </label>
       <label className={css.label}>
@@ -75,8 +47,6 @@ export default function Form() {
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
-          value={phone}
-          onChange={onChange}
         />
       </label>
       <button type="submit" className={css.btn}>
