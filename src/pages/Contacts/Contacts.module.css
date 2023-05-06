@@ -1,0 +1,31 @@
+
+
+
+.list {
+  list-style: square;
+  max-width: 600px;
+}
+
+.item {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 13px;
+    text-transform: capitalize;
+    font-size: 16px;
+    font-style: italic;
+    border-bottom: 1px solid blue;
+}
+
+.name {
+  font-weight: bold;
+  margin-right: 30px;
+}
+
+.btn {
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    padding: 3px;
+    color: white;
+    background-color: darkblue;
+}

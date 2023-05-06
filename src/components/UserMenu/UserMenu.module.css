@@ -1,0 +1,15 @@
+.name {
+    margin-right: 15px;
+    font-size: 20px;
+    font-weight: 800px;
+    color: blue;
+}
+
+.btn {
+    padding: 10px;
+    font-size: 14px;
+    background-color:darkblue;
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
