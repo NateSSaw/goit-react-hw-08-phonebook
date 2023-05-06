@@ -1,12 +1,11 @@
 import css from 'components/Form/Form.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContactThunk } from 'redux/contacts/operations';
-import { getContactsState, getFilterState } from 'redux/contacts/selectors';
+import { getContactsState } from 'redux/contacts/selectors';
 
 export default function Form() {
   const dispatch = useDispatch();
   const contacts = useSelector(getContactsState);
-  const filter = useSelector(getFilterState);
   const onSubmit = e => {
     e.preventDefault();
     const form = e.currentTarget;

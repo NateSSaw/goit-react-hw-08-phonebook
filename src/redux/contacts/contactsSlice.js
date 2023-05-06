@@ -56,37 +56,3 @@ const contactsSlice = createSlice({
 });
 
 export const contactsReducer = contactsSlice.reducer;
-
-// import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-// import { initialState } from './initialState';
-// import {
-//   addContactThunk,
-//   deleteContactThunk,
-//   getContactsThunk,
-// } from './operations';
-// import {
-//   handleFulfilled,
-//   handleFulfilledAdd,
-//   handleFulfilledDel,
-//   handleFulfilledGet,
-//   handlePending,
-//   handleRejected,
-//   typeRequest,
-// } from '../../servises/statusFunctions';
-
-// export const contactSlice = createSlice({
-//   name: 'contacts',
-//   initialState: initialState,
-
-//   extraReducers: builder => {
-//     builder
-//       .addCase(getContactsThunk.fulfilled, handleFulfilledGet)
-//       .addCase(addContactThunk.fulfilled, handleFulfilledAdd)
-//       .addCase(deleteContactThunk.fulfilled, handleFulfilledDel)
-//       .addMatcher(isAnyOf(...typeRequest('pending')), handlePending)
-//       .addMatcher(isAnyOf(...typeRequest('rejected')), handleRejected)
-//       .addMatcher(isAnyOf(...typeRequest('fulfilled')), handleFulfilled);
-//   },
-// });
-
-// export const contactReducer = contactSlice.reducer;
